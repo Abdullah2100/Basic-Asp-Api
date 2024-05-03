@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FackApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a38cf27e994c8fa37cc48019883b6f9361f349a")]
 [assembly: System.Reflection.AssemblyProductAttribute("FackApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FackApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
