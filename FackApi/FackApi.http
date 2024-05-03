@@ -1,0 +1,6 @@
+@FackApi_HostAddress = http://localhost:5276
+
+GET {{FackApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
