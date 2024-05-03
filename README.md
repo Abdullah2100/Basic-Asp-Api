@@ -1,8 +1,6 @@
-Sure! I'll provide you with a Markdown template that you can use for your GitHub README file. You can replace the placeholders with your actual code and information. Here's an example:
-
 ## Fake API
 
-This project is a dummy API that manages data for a table called "Fack".
+This project is a dummy API that manages data for a table called 'Fack.' It is primarily for learning purposes. It is just a learning process.
 
 ### Technologies Used
 
