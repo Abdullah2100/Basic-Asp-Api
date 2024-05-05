@@ -70,13 +70,15 @@ GET /api/Fack
     "fackID": 1,
     "name": "John Doe",
     "job": "Engineer",
-    "isDeleted": false
+    "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
+    "isDeleted": false,
   },
   {
     "fackID": 2,
     "name": "Jane Smith",
     "job": "Designer",
-    "isDeleted": false
+    "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
+    "isDeleted": false,
   }
 ]
 ```
@@ -96,7 +98,9 @@ GET /api/Fack/1
   "fackID": 1,
   "name": "John Doe",
   "job": "Engineer",
-  "isDeleted": false
+ "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
+  "isDeleted": false,
+
 }
 ```
 
@@ -110,7 +114,8 @@ Content-Type: application/json
 
 {
   "name": "Alice Johnson",
-  "job": "Manager"
+  "job": "Manager",
+  "image":"fakeImage.png
 }
 ```
 
@@ -121,6 +126,7 @@ Content-Type: application/json
   "fackID": 3,
   "name": "Alice Johnson",
   "job": "Manager",
+  "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
   "isDeleted": false
 }
 ```
@@ -136,6 +142,7 @@ Content-Type: application/json
 {
   "fackID": 1,
   "name": "John Doe",
+  "image": "fackimageUpdate.png",
   "job": "Senior Engineer"
 }
 ```
@@ -147,6 +154,7 @@ Content-Type: application/json
   "fackID": 1,
   "name": "John Doe",
   "job": "Senior Engineer",
+  "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
   "isDeleted": false
 }
 ```
@@ -242,12 +250,14 @@ GET /api/facks
     "fackId": 1,
     "name": "John Doe",
     "job": "Engineer",
+    "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
     "isDeleted": false
   },
   {
     "fackId": 2,
     "name": "Jane Smith",
     "job": "Designer",
+    "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
     "isDeleted": false
   }
 ]
@@ -268,6 +278,7 @@ GET /api/facks/1
   "fackId": 1,
   "name": "John Doe",
   "job": "Engineer",
+ "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
   "isDeleted": false
 }
 ```
@@ -282,7 +293,8 @@ Content-Type: application/json
 
 {
   "name": "Alice Johnson",
-  "job": "Manager"
+  "job": "Manager",
+  "image": "fack.png"
 }
 ```
 
@@ -293,6 +305,7 @@ Content-Type: application/json
   "fackId": 3,
   "name": "Alice Johnson",
   "job": "Manager",
+ "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
   "isDeleted": false
 }
 ```
@@ -307,7 +320,8 @@ Content-Type: application/json
 
 {
   "name": "John Doe",
-  "job": "Senior Engineer"
+  "job": "Senior Engineer",
+  "image": "updateFack.png"
 }
 ```
 
@@ -318,6 +332,7 @@ Content-Type: application/json
   "fackId": 1,
   "name": "John Doe",
   "job": "Senior Engineer",
+  "image" :"https://"fackLocal"/Images/302c2323-0850-42c8-be05-9e5d6664f32a.jpg",
   "isDeleted": false
 }
 ```
