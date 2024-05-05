@@ -16,7 +16,10 @@ namespace FackData
                 {
                     con.Open();
 
-                    string query = "select * from Facks";
+                    string query = @"select fackID,name,job ,
+                                     case when image is null then ' ' else image end as image,
+                                      isDeleted
+                                     from Facks";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -32,12 +35,12 @@ namespace FackData
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error is : " + ex.Message);
             }
             return dtFacks;
         }
 
-        public static bool findFack(int id, ref string name, ref string job, ref bool isDeleted)
+        public static bool findFack(int id, ref string name, ref string job, ref bool isDeleted, ref string image)
         {
             bool isFound = false;
             try
@@ -57,6 +60,8 @@ namespace FackData
                                 name = (string)reader["name"];
                                 job = (string)reader["job"];
                                 isDeleted = (bool)reader["isDeleted"];
+                                if (reader["image"] != DBNull.Value)
+                                    image = (string)reader["image"];
                                 isFound = true;
 
                             }
@@ -69,12 +74,12 @@ namespace FackData
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error is : " + ex.Message);
             }
             return isFound;
         }
 
-        public static int createFack(string name, string job)
+        public static int createFack(string name, string job, string image)
         {
             int id = 0;
             try
@@ -83,13 +88,17 @@ namespace FackData
                 {
                     con.Open();
 
-                    string query = @"insert into Facks (name,job)
-                                     values(@name,@job);
+                    string query = @"insert into Facks (name,job,image)
+                                     values(@name,@job,@image);
                                      select SCOPE_IDENTITY();    ";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@job", job);
+                        if (!string.IsNullOrEmpty(image))
+                            cmd.Parameters.AddWithValue("@image", image);
+                        else
+                            cmd.Parameters.AddWithValue("@image", DBNull.Value);
                         object result = cmd.ExecuteScalar();
                         if (result != null && int.TryParse(result.ToString(), out int resultID))
                         {
@@ -103,11 +112,11 @@ namespace FackData
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error is : " + ex.Message);
             }
             return id;
         }
-        public static bool updateFack(int id, string name, string job, bool? isDeleted)
+        public static bool updateFack(int id, string name, string job, bool? isDeleted, string image)
         {
             bool isUpdate = false;
             try
@@ -117,18 +126,35 @@ namespace FackData
                     con.Open();
 
                     string query = @"update Facks 
-                                     set name=@name,job=@id,isDeleted=@isDeleted
+                                     set name = @name,
+                                     job = @id,
+                                     isDeleted = @isDeleted,
+                                     image = @image
                                      where fackID = @id;";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@id", id);
                         if (!string.IsNullOrEmpty(name))
                             cmd.Parameters.AddWithValue("@name", name);
+                        else
+                            cmd.Parameters.AddWithValue("@name", DBNull.Value);
+
                         if (!string.IsNullOrEmpty(job))
                             cmd.Parameters.AddWithValue("@job", job);
+                        else
+                            cmd.Parameters.AddWithValue("@job", DBNull.Value);
+
                         if (isDeleted != null)
                             cmd.Parameters.AddWithValue("@isDeleted", isDeleted);
+                        else
+                            cmd.Parameters.AddWithValue("@isDeleted", DBNull.Value);
+
+                        if (!string.IsNullOrEmpty(image))
+                            cmd.Parameters.AddWithValue("@image", image);
+                        else
+                            cmd.Parameters.AddWithValue("@image", DBNull.Value);
                         int result = cmd.ExecuteNonQuery();
+
                         if (result > 0)
                         {
 
@@ -142,7 +168,7 @@ namespace FackData
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error is : " + ex.Message);
             }
             return isUpdate;
         }
@@ -173,7 +199,7 @@ namespace FackData
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error is : " + ex.Message);
             }
             return isDeleted;
         }

@@ -13,6 +13,7 @@ namespace FackBuisness
         public int? id { get; set; }
         public string name { get; set; }
         public string job { get; set; }
+        public string image { get; set; }
         public bool? isDeleted { get; set; } = false;
 
 
@@ -21,18 +22,20 @@ namespace FackBuisness
             this.id = null;
             this.name = string.Empty;
             this.job = string.Empty;
-            this.isDeleted = null;
+            this.image = string.Empty;
+            this.isDeleted = false;
             this.mode = enMode.add;
         }
 
 
-        private clsFackBuisness(enMode mode, int? id, string name, string job, bool? isDeleted)
+        private clsFackBuisness(enMode mode, int? id, string name, string job, bool? isDeleted, string image)
         {
             this.mode = mode;
             if (id != null)
                 this.id = id;
             this.name = name;
             this.job = job;
+            this.image = image;
             if (isDeleted != null)
                 this.isDeleted = isDeleted;
         }
@@ -43,7 +46,7 @@ namespace FackBuisness
             {
                 return clsFackData.getFacks()
                      .AsEnumerable()
-                     .Select(data => new clsFackBuisness(enMode.update, (int)data["fackID"], (string)data["name"], (string)data["job"], (bool)data["isDeleted"]))
+                     .Select(data => new clsFackBuisness(enMode.update, (int)data["fackID"], (string)data["name"], (string)data["job"], (bool)data["isDeleted"], (string)data["image"]))
                      .ToList();
             }
             catch (Exception ex)
@@ -58,13 +61,14 @@ namespace FackBuisness
 
             string name = "";
             string job = "";
+            string image = "";
             bool isDeleted = false;
             try
             {
 
-                if (clsFackData.findFack(id, ref name, ref job, ref isDeleted))
+                if (clsFackData.findFack(id, ref name, ref job, ref isDeleted, ref image))
                 {
-                    return new clsFackBuisness(enMode.update, id, name, job, isDeleted);
+                    return new clsFackBuisness(enMode.update, id, name, job, isDeleted, image);
                 }
                 return null;
             }
@@ -79,7 +83,7 @@ namespace FackBuisness
         {
             try
             {
-                this.id = clsFackData.createFack(name, job);
+                this.id = clsFackData.createFack(name, job, image);
                 return (this.id != 0);
             }
             catch (Exception ex)
@@ -93,7 +97,7 @@ namespace FackBuisness
             try
             {
 
-                return clsFackData.updateFack(id ?? 0, name, job, isDeleted);
+                return clsFackData.updateFack(id ?? 0, name, job, isDeleted, image);
             }
             catch (Exception ex)
             {

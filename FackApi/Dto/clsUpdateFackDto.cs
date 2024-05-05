@@ -1,7 +1,8 @@
 ﻿namespace FackApi.Dto
 {
-    public class clsFackDto
+    public class clsUpdateFackDto
     {
+        public int? id { get; set; } = null;
 
         public string name { get; set; } = "";
 
@@ -11,9 +12,6 @@
 
         public IFormFile image { get; set; }
 
-        public bool isHasNullValue()
-        {
-            return string.IsNullOrEmpty(name) || string.IsNullOrEmpty(job);
-        }
+
     }
 }
